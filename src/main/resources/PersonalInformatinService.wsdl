@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://com.example.satya"
+	targetNamespace="http://vo.satya.example.com"
+	name="PersonalInformationService">
+
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns="https://www.w3schools.com"
+			xmlns:tns="http://vo.satya.example.com"
+			targetNamespace="http://vo.satya.example.com"
+			elementFormDefault="qualified">
+
+			<xs:complexType name="Person">
+				<xs:sequence>
+					<xs:element name="personId" type="xs:string" />
+					<xs:element name="firstName" type="xs:string" />
+					<xs:element name="middleName" type="xs:string" />
+					<xs:element name="lastName" type="xs:string" />
+					<xs:element name="age" type="xs:int" />
+					<xs:element name="gender" type="xs:string" />
+					<xs:element name="address" type="tns:Address"
+						maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:complexType name="Address">
+				<xs:sequence>
+					<xs:element name="addressId" type="xs:string" />
+					<xs:element name="addressLine1" type="xs:string" />
+					<xs:element name="addressLine2" type="xs:string" />
+					<xs:element name="addressType" type="xs:string" />
+					<xs:element name="city" type="xs:string" />
+					<xs:element name="districtCounty" type="xs:string" />
+					<xs:element name="state" type="xs:string" />
+					<xs:element name="country" type="xs:string" />
+					<xs:element name="pinZipcode" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+
+			<xs:element name="GetPersonRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="personId" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="GetPersonResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="person" type="tns:Person" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="CreatePersonRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="person" type="tns:Person" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="CreatePersonResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="personId" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+		</xs:schema>
+	</wsdl:types>
+
+	<wsdl:message name="GetPersonRequest">
+		<wsdl:part name="parameters" element="tns:GetPersonRequest" />
+	</wsdl:message>
+
+	<wsdl:message name="GetPersonResponse">
+		<wsdl:part name="parameters" element="tns:GetpersonResponse" />
+	</wsdl:message>
+
+	<wsdl:message name="CreatePersonRequest">
+		<wsdl:part name="parameters"
+			element="tns:CreatePersonRequest" />
+	</wsdl:message>
+
+	<wsdl:message name="CreatePersonResponse">
+		<wsdl:part name="parameters"
+			element="tns:CreatePersonResponse" />
+	</wsdl:message>
+
+	<wsdl:portType name="PersonalInformationServicePortType">
+		<wsdl:operation name="getPersonBiography">
+			<wsdl:input message="tns:GetPersonRequest" />
+			<wsdl:output message="tns:GetPersonResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="createPerson">
+			<wsdl:input message="tns:CreatePersonRequest" />
+			<wsdl:output message="tns:CreatePersonResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="PersonalInformationServiceBinding11"
+		type="tns:PersonalInformationServicePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<soap:input use="literal" message="tns:CreatePersonRequest" />
+		<soap:output use="literal" message="tns:CreatePersonResponse" />
+		<soap:input use="literal" message="tns:CreatePersonRequest" />
+		<soap:output use="literal" message="tns:CreatePersonResponse" />
+	</wsdl:binding>
+
+	<wsdl:service name="PersonalInformationService">
+		<wsdl:port name="PersonalInformationServicePort" binding="tns:PersonalInformationServiceBinding11">
+			<soap:address location="http://localhost:8080/services/personServiceWsdl" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
