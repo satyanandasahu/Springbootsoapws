@@ -3,7 +3,7 @@ This project is a Spring Boot SOAP API for learning purpose. Have the capabiliti
 
 Dependencies: Maven will takecare of all the JAR/Library dependecies but you need to install MySQL DB for database. You can also change the configuration DB for other external or in memeory DB.
 
-After installation of MySQL DB you need to have Person table on your DB.
+After installation of MySQL DB you need to have Person & Address table on your DB Schema. Query is given below 
 
 Run this maven command to create a jar artifact mvn clean package -Pjar Run this maven command to create a war artifact mvn clean package -Pwar
 
