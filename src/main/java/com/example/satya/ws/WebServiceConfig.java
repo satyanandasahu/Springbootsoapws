@@ -27,23 +27,22 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 		MessageDispatcherServlet servlet = new MessageDispatcherServlet();
 		servlet.setApplicationContext(applicationContext);
 		servlet.setTransformWsdlLocations(true);
-		//http://localhost:24081/services/personServiceWsdl.wsdl
 		return new ServletRegistrationBean(servlet, "/services/*");
 	}
 	
-/*
 	@Bean
     public SaajSoapMessageFactory messageFactory() {
         SaajSoapMessageFactory messageFactory = new SaajSoapMessageFactory();
-        messageFactory.setSoapVersion(SoapVersion.SOAP_12);
+        messageFactory.setSoapVersion(SoapVersion.SOAP_11);
         return messageFactory;
     }
 	
-	*/
+	
 	
 	@Bean(name = "personServiceWsdl")
 	public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema personSchema) {
 		System.out.println("Inside DefaultWsdl11Definition iniialization");
+		
 		
 		DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
 		wsdl11Definition.setPortTypeName("PersonInformationServicePort");
@@ -51,12 +50,11 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 		wsdl11Definition.setTargetNamespace("http://com.example.satya.vo");
 		wsdl11Definition.setSchema(personSchema);		    
 		//wsdl11Definition.setCreateSoap12Binding(true); 
-		//wsdl11Definition.setCreateSoap11Binding(true); 
 		return wsdl11Definition;
 	}
 	 
-	/*	
 	
+	/*
 	@Bean(name = "personServiceWsdl")
 	public SimpleWsdl11Definition simpleWsdl11Definition() {
 		SimpleWsdl11Definition wsdl11Definition = new SimpleWsdl11Definition();
@@ -64,9 +62,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 		return wsdl11Definition;
 	}
 	
-		 */
-	
-	
+	*/
 
 	@Bean
 	public XsdSchema personSchema() {
