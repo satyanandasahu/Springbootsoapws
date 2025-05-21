@@ -1,6 +1,8 @@
 
 This project is a Spring Boot SOAP API for learning purpose. Have the capabilities to run both on embedded tomcat and on external tomcat.
 
+This project has also a sopa client project. You can use that project to test this webservice programmatically, here is the project @springSoapWebServiceClient
+
 Dependencies: Maven will takecare of all the JAR/Library dependecies but you need to install MySQL DB for database. You can also change the configuration DB for other external or in memeory DB.
 
 After installation of MySQL DB you need to have Person & Address table on your DB Schema. Query is given below 
